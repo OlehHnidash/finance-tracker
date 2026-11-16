@@ -1,4 +1,4 @@
-# Ledgerly – Personal Finance Tracker
+#Personal Finance Tracker
 
 A dark, fintech-style personal finance dashboard built with **HTML5, CSS3 and vanilla JavaScript (ES6+)**.
 No frameworks, no build step, no backend. Data is stored in the browser's LocalStorage.
