@@ -1,0 +1,82 @@
+/* Simple dark theme. Class names are used by index.html and the JS files, so rename them in both places. */
+:root { --bg:#12161f; --card:#1b2130; --line:#2c344a; --text:#e6e9f2; --muted:#9099b0;
+        --accent:#7b8cff; --good:#4cd9a4; --bad:#ff7b8e; --warn:#ffc15e; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.5 system-ui, sans-serif; }
+.app { max-width: 1000px; margin: 0 auto; padding: 20px; }
+.topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.brand { font-size: 20px; font-weight: 700; }
+.brand-mark { display: none; }
+h2 { margin: 0 0 10px; font-size: 14px; color: var(--muted); }
+h3 { margin: 0 0 6px; }
+.muted { color: var(--muted); margin: 0; }
+.positive { color: var(--good); }
+.negative { color: var(--bad); }
+
+/* layout */
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px; }
+.stats, .row, .main { display: grid; gap: 16px; margin-bottom: 16px; }
+.stats { grid-template-columns: repeat(4, 1fr); }
+.row { grid-template-columns: 2fr 1fr; }
+.main { grid-template-columns: 300px 1fr; align-items: start; }
+.stat-value { margin: 0; font-size: 24px; font-weight: 700; }
+.chart-wrap { position: relative; height: 240px; }
+
+/* forms */
+label { display: block; margin-bottom: 4px; font-size: 13px; color: var(--muted); }
+input, select { width: 100%; padding: 8px; background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 6px; font: inherit; color-scheme: dark; }
+input.invalid, select.invalid { border-color: var(--bad); }
+.field { margin-bottom: 12px; }
+.error { display: block; color: var(--bad); font-size: 13px; }
+.inline { display: flex; gap: 8px; }
+.segmented { display: flex; gap: 16px; margin-bottom: 12px; }
+.segmented input { width: auto; }
+.segmented label { display: inline; margin: 0 0 0 4px; color: var(--text); }
+.btn { padding: 8px 14px; border: 0; border-radius: 6px; font: inherit; font-weight: 600; cursor: pointer; background: var(--accent); color: #000; white-space: nowrap; }
+.btn-ghost { background: none; border: 1px solid var(--line); color: var(--muted); }
+.btn-danger { background: var(--bad); }
+.actions { display: flex; gap: 8px; }
+.actions.end { justify-content: flex-end; margin-top: 16px; }
+
+/* budget */
+.progress { height: 10px; background: var(--bg); border-radius: 5px; overflow: hidden; margin-bottom: 8px; }
+.progress-fill { height: 100%; width: 0; background: var(--good); }
+.progress-fill.warn { background: var(--warn); }
+.progress-fill.over { background: var(--bad); }
+.budget-percent { margin: 0; font-size: 20px; font-weight: 700; }
+.alert { margin: 10px 0 0; padding: 8px; border-radius: 6px; color: var(--warn); background: rgba(255,193,94,.12); }
+.alert.over { color: var(--bad); background: rgba(255,123,142,.12); }
+#budget-form { margin-top: 14px; }
+
+/* filters and list */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.filters input, .filters select { width: auto; }
+.filters #filter-search { flex: 1; min-width: 160px; }
+.date-filter { display: flex; align-items: center; gap: 4px; margin: 0; }
+.tx-list { list-style: none; margin: 0; padding: 0; }
+.tx { display: grid; grid-template-columns: 28px 1fr auto auto; gap: 12px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); }
+.tx-icon { font-weight: 700; text-align: center; }
+.tx-icon.income { color: var(--good); } .tx-icon.expense { color: var(--bad); }
+.tx-title { font-weight: 600; }
+.tx-meta { display: flex; gap: 8px; font-size: 13px; color: var(--muted); }
+.tx-amount { font-weight: 700; }
+.tx-actions { display: flex; gap: 6px; }
+.tx-actions button { background: none; border: 1px solid var(--line); color: var(--muted); border-radius: 6px; padding: 3px 8px; cursor: pointer; font: inherit; }
+.empty { text-align: center; padding: 30px 10px; }
+.empty-title { margin: 0; font-weight: 700; }
+
+/* dialog and toast */
+dialog { background: var(--card); color: var(--text); border: 1px solid var(--line); border-radius: 10px; padding: 20px; max-width: 380px; }
+dialog::backdrop { background: rgba(0,0,0,.6); }
+.toast { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); padding: 10px 16px; background: var(--card); border: 1px solid var(--good); border-radius: 6px; opacity: 0; pointer-events: none; transition: opacity .2s; }
+.toast.show { opacity: 1; }
+.toast.error { border-color: var(--bad); }
+
+/* phones and small windows */
+@media (max-width: 800px) {
+  .stats { grid-template-columns: 1fr 1fr; }
+  .row, .main { grid-template-columns: 1fr; }
+  .tx { grid-template-columns: 28px 1fr auto; }
+  .tx-actions { grid-column: 2 / -1; }
+}
